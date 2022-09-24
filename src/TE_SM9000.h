@@ -24,12 +24,14 @@
 
 class SM9000_sensor {
   public:
-    float pressure = 0;
-    float temperature = 0;
     SM9000_sensor(float _Pmax, float _Pmin, int _OUT_min, int _OUT_max);
     void readData(void);
     float getTemp(void);
     float getPressure(void);
+    word getStatus();
+    void sleep(void);
+    void wake(void);
+    void reset(void);
 
   private:
     byte I2C_address = 0x6C;

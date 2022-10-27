@@ -1,14 +1,11 @@
-// Wire Master Reader
-// by Nicholas Zambetti <http://www.zambetti.com>
+// TE SM9000 read example
+// by Teemu Latonen <https://www.linkedin.com/in/teemulatonen/>
 
-// Demonstrates use of the Wire library
-// Reads data from an I2C/TWI slave device
-// Refer to the "Wire Slave Sender" example for use with this
+// Demonstrates use of the TE SM9000 series pressure sensors
 
-// Created 29 March 2006
+// Created 27 Oct 2022
 
 // This example code is in the public domain.
-
 
 #include <Wire.h>
 #include <TE_SM9000.h>
@@ -22,7 +19,6 @@ void setup() {
 }
 
 void loop() {
-  //T9233.reset();
   T9233.wake();
   delay(2000);
 

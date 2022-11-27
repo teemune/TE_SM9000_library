@@ -19,7 +19,6 @@ SM9000_sensor::SM9000_sensor(float _Pmax, float _Pmin, int _OUT_min, int _OUT_ma
   }
 }
 
-
 // Read the pressure, temperature and status 
 // no CRC
 void SM9000_sensor::readData()
@@ -53,8 +52,12 @@ float SM9000_sensor::getPressure()
 {
   float pressure = 0;
   int SM9000_pressure_raw = 0;
+  long countScale = OUT_max;
+  countScale -= OUT_min;
+  double pressureScale = Pmax - Pmin;
   SM9000_pressure_raw += reading[2] + (reading[3] << 8);
-  pressure = Pmin + ((float)(SM9000_pressure_raw - OUT_min) / (float)((long)OUT_max - (long)OUT_min))*(Pmax - Pmin);
+  pressure = (((float)SM9000_pressure_raw - (float)OUT_min) / (float)countScale) * (float)pressureScale;
+  pressure += Pmin;
   return pressure;
 }
 
@@ -62,9 +65,9 @@ float SM9000_sensor::getPressure()
 // no CRC
 word SM9000_sensor::getStatus()
 {
-  word SM900_status = 0;
-  SM900_status += reading[4] + (reading[5] << 8);
-  return SM900_status;
+  word SM9000_status = 0;
+  SM9000_status += reading[4] + (reading[5] << 8);
+  return SM9000_status;
 }
 
 // Read the pressure, temperature and status 

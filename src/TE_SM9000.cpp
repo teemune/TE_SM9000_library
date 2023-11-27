@@ -40,7 +40,7 @@ void SM9000_sensor::readData()
 float SM9000_sensor::getTemp()
 {
   float temperature = 0;
-  int SM9000_temperature_raw = 0;
+  int16_t SM9000_temperature_raw = 0;
   SM9000_temperature_raw += reading[0] + (reading[1] << 8);
   temperature = ((float)SM9000_temperature_raw + SM9000_T_OFFSET) / SM9000_T_SCALE;
   return temperature;
@@ -51,7 +51,7 @@ float SM9000_sensor::getTemp()
 float SM9000_sensor::getPressure()
 {
   float pressure = 0;
-  int SM9000_pressure_raw = 0;
+  int16_t SM9000_pressure_raw = 0;
   long countScale = OUT_max;
   countScale -= OUT_min;
   double pressureScale = Pmax - Pmin;

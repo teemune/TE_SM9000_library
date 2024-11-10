@@ -26,7 +26,7 @@ void SM9000_sensor::readData()
   Wire.beginTransmission(I2C_address);
   Wire.write(0x2E);
   Wire.endTransmission(false);
-  Wire.requestFrom(I2C_address, 6, true);
+  Wire.requestFrom((uint8_t)I2C_address, (size_t)6, true);
   for(int i = 0; i < 6; i++)
   {
   	if(Wire.available()) {
